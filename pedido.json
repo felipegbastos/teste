@@ -1,0 +1,19 @@
+{
+  "idPedido": "PEDIDO-12345",
+  "tipoIngresso": "General Admission",
+  "dataViagem": "2025-10-15",
+  "destinoSaida": "New York",
+  "horario": "10:00 AM",
+  "visitantes": [
+    { "nome": "JOSÉ SILVA", "dataNascimento": "1985-05-20" },
+    { "nome": "MARIA SILVA", "dataNascimento": "1988-11-10" },
+    { "nome": "JOÃO SILVA", "dataNascimento": "2015-02-01" },
+    { "nome": "ANA SILVA", "dataNascimento": "1958-07-30" }
+  ],
+  "comprador": {
+    "primeiroNome": "JUSTTRAVEL",
+    "ultimoNome": "TOUR",
+    "email": "reservations@oparkstravel.com",
+    "telefone": "11123456789"
+  }
+}
