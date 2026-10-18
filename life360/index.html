@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-title" content="Life360">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiM2CismisZcF0M7Eob9QznxI9YKMjfLinsA&amp;s">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; overflow: hidden; background: #8146E4;
@@ -19,8 +19,7 @@
   .splash { position: fixed; inset: 0; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 18px; background: #8146E4;
     transition: opacity .5s ease, transform .5s ease; }
-  .splash svg { width: 120px; height: 120px; }
-  .splash span { color: #fff; font-size: 34px; font-weight: 700; letter-spacing: -.5px; }
+  .splash img { width: 180px; height: 180px; object-fit: contain; border-radius: 40px; }
   .splash.closing { opacity: 0; transform: scale(.85); }
   .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none;
     align-items: center; justify-content: center; padding: 16px; }
@@ -38,8 +37,7 @@
 </head>
 <body>
   <div class="splash" id="splash">
-    <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="150" fill="none" stroke="#fff" stroke-width="44"/><circle cx="256" cy="256" r="58" fill="#fff"/></svg>
-    <span>Life360</span>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiM2CismisZcF0M7Eob9QznxI9YKMjfLinsA&amp;s" alt="Life360">
   </div>
 
   <div class="overlay" id="overlay">
