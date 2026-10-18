@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Life360</title>
+<meta name="theme-color" content="#8146E4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Life360">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; overflow: hidden; background: #8146E4;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .splash { position: fixed; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 18px; background: #8146E4;
+    transition: opacity .5s ease, transform .5s ease; }
+  .splash svg { width: 120px; height: 120px; }
+  .splash span { color: #fff; font-size: 34px; font-weight: 700; letter-spacing: -.5px; }
+  .splash.closing { opacity: 0; transform: scale(.85); }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none;
+    align-items: center; justify-content: center; padding: 16px; }
+  .overlay.show { display: flex; animation: fade .15s ease; }
+  .dialog { background: #fff; width: 100%; max-width: 300px; border-radius: 14px;
+    text-align: center; overflow: hidden; }
+  .dialog h1 { font-size: 17px; font-weight: 600; padding: 20px 16px 4px; color: #000; }
+  .dialog p { font-size: 13px; color: #333; padding: 0 16px 18px; line-height: 1.35; }
+  .dialog button { width: 100%; border: 0; border-top: 1px solid #ddd; background: none;
+    padding: 13px; font-size: 17px; font-weight: 600; color: #007aff; }
+  .dialog button:active { background: #eee; }
+  .black { position: fixed; inset: 0; background: #000; display: none; }
+  @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+</style>
+</head>
+<body>
+  <div class="splash" id="splash">
+    <svg viewBox="0 0 512 512"><circle cx="256" cy="256" r="150" fill="none" stroke="#fff" stroke-width="44"/><circle cx="256" cy="256" r="58" fill="#fff"/></svg>
+    <span>Life360</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="dialog" role="alertdialog">
+      <h1>Life360 parou de funcionar</h1>
+      <p>Ocorreu um erro inesperado. O aplicativo será fechado.</p>
+      <button id="ok">OK</button>
+    </div>
+  </div>
+
+  <div class="black" id="black"></div>
+
+<script>
+  const overlay = document.getElementById('overlay');
+  const splash = document.getElementById('splash');
+  const black = document.getElementById('black');
+
+  // Mostra o erro logo depois de abrir
+  setTimeout(() => overlay.classList.add('show'), 900);
+
+  document.getElementById('ok').addEventListener('click', () => {
+    overlay.classList.remove('show');
+    // Logo aparece por um instante e o "app" fecha
+    setTimeout(() => splash.classList.add('closing'), 700);
+    setTimeout(() => {
+      black.style.display = 'block';
+      window.close();
+    }, 1250);
+  });
+
+  // Toda vez que voltar para o app, o erro aparece de novo
+  const restart = () => {
+    black.style.display = 'none';
+    splash.classList.remove('closing');
+    overlay.classList.remove('show');
+    setTimeout(() => overlay.classList.add('show'), 900);
+  };
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) restart(); });
+  window.addEventListener('pageshow', e => { if (e.persisted) restart(); });
+</script>
+</body>
+</html>
